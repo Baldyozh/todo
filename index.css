@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(31,33,32);
+
+}
+
+#wrapper-for-form, #but {
+    width: 80%;
+    margin:0 10% 0 10%;
+}
+.wrapper {
+    background-color: rgb(31,33,32);
+    position: absolute;
+    align-content: center;
+    width: 50%;
+    margin: 0 25% 0 25%;
+    
+
+}
+#ne-ebu {
+    color:rgb(16, 238, 188);
+    text-align: center;
+}
