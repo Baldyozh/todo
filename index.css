@@ -5,18 +5,36 @@ body {
 
 #wrapper-for-form, #but {
     width: 80%;
-    margin:0 10% 0 10%;
+    margin:0 10% 10% 10%;
+    
 }
+
 .wrapper {
     background-color: rgb(31,33,32);
     position: absolute;
     align-content: center;
     width: 50%;
     margin: 0 25% 0 25%;
-    
+    border: 2px double rgb(16, 238, 188) ;
 
 }
 #ne-ebu {
     color:rgb(16, 238, 188);
     text-align: center;
+}
+#place-for-notification {
+    position: absolute;
+    margin: auto;
+    height: 90rem;
+}
+#notification{
+    margin-left: 30%;
+    margin-top: 10%;
+    border: 2px solid rgb(19, 248, 69) ;
+    border-radius: 4px;
+}
+#name {
+    margin-left: 35%;
+    border: 2px solid rgb(19, 248, 69) ;
+    border-radius: 4px;
 }
