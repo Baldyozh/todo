@@ -19,6 +19,10 @@ addCont = (wrapper, text, key, name=null) => {
     wrapper.firstChild.appendChild(document.createElement('p'));
     wrapper.firstChild.className = 'text-note';
     wrapper.firstChild.lastChild.textContent = text;
+    let now = new Date();
+    wrapper.firstChild.appendChild(document.createElement('p'));
+    wrapper.firstChild.lastChild.textContent = `${now.getDate()}:${now.getMonth() + 1}:${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+    wrapper.firstChild.lastChild.className = 'date';
     wrapper.firstChild.appendChild(document.createElement('p'));
     wrapper.firstChild.lastChild.textContent = key;
     wrapper.firstChild.lastChild.classList.add('identificator');
@@ -42,6 +46,10 @@ addCont = (wrapper, text, key, name=null) => {
   wrapper.lastChild.appendChild(document.createElement('p'));
   wrapper.lastChild.className = 'text-note';
   wrapper.lastChild.lastChild.textContent = text;
+  wrapper.lastChild.appendChild(document.createElement('p'));
+  let now = new Date();
+  wrapper.lastChild.lastChild.textContent = `${now.getDate()}:${now.getMonth() + 1}:${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+  wrapper.lastChild.lastChild.className = 'date';
   wrapper.lastChild.appendChild(document.createElement('p'));
   wrapper.lastChild.lastChild.textContent = key;
   wrapper.lastChild.lastChild.classList.add('identificator');
@@ -100,10 +108,12 @@ but.onclick = () => {
             addCont(wrapper, textNote, key, nameNote);
             localStorage.setItem(key, nameNote + ',,,' + textNote);
             localStorage.counter++;
-           
         }
-    }
-}
+
+  }
+  document.getElementById('name-note').value = '';
+  document.getElementById('form-note').value = '';
+} 
 
 
 window.onclick = function(event) {
