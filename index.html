@@ -4,26 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="index.css">
-    <title>TODO List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
 </head>
 <body>
-    
-    <div class="wrapper">
-        <h1 id="ne-ebu">Создать записку</h1>
+    <h1>TODO</h1>
+    <div id="wrapper-button-form">
         <div id="wrapper-for-form">
-            <input type="text-area" id='name' placeholder="Название">
-            <textarea name="notification" id="notification" cols="30" rows="10" placeholder="Напоминание"></textarea>
-            
+            <div><input type="text" placeholder="Название" id='name-note'></div>
+            <div><textarea name="note" id="form-note" cols="30" rows="10"></textarea></div>
         </div>
-        <input type="Button" id='but' value='Создать'>
-        
-        
-        
+        <button id='but'>Create</button>
     </div>
-    <div id="place-for-notifications"></div>
-
-    <script src="s.js"></script>
-
+    <div id='wrapper-for-notes'></div>
+    <script src="script.js"></script>
 </body>
 </html>

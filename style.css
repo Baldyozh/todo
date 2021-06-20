@@ -1,0 +1,98 @@
+#wrapper-button-form{
+    margin-left: 25%;
+    align-content: center;
+    width: 50%;
+    align-content: center;
+    border: 2px solid rgb(19, 248, 69) ;
+    border-radius: 30px;
+    margin-right: 25%;
+}
+#wrapper-for-notes{
+    margin-left: 15%;
+    width: 70%;
+    margin-right: 15%;
+}
+
+
+body{
+    background-color: rgb(31,33,32);
+}
+#but, #name-note, #form-note{
+    margin-right: 25%;
+    margin-left: 25%;
+    width: 50%;
+    margin-top: 5%;
+}
+#but {
+    margin-bottom: 5%;
+}
+
+p, h2 {
+    color: aqua;
+}
+h1{
+    text-align: center;
+    color: rgb(19, 248, 69);
+}
+.text-note{
+    border: 2px solid rgb(18, 84, 228) ;
+    border-radius: 15px;
+    margin-right: 25%;
+    margin-top: 3%;
+    padding: 2%;
+    
+}
+.dropbtn {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: 5%;
+    margin-right: 1%;
+    margin-left: 99%;
+  }
+  
+  /* Кнопка выпадающего меню при наведении и фокусировке */
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #2980B9;
+  }
+  
+  /* Контейнер <div> - необходим для размещения выпадающего содержимого */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    
+  }
+  
+  /* Выпадающее содержимое (скрыто по умолчанию) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  /* Ссылки внутри выпадающего списка */
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  /* Изменение цвета выпадающих ссылок при наведении курсора */
+  .dropdown-content a:hover {background-color: #ddd}
+  
+  /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
+  .show {display:block;}
+  .identificator {display: none;}
+  .del-but{
+    width: 100%;
+  }
+  .ready-but{
+    width: 100%;
+  }
