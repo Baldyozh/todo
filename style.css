@@ -34,14 +34,14 @@ h1{
     text-align: center;
     color: rgb(19, 248, 69);
 }
-.text-note{
-    border: 2px solid rgb(18, 84, 228) ;
-    border-radius: 15px;
-    margin-right: 25%;
-    margin-top: 3%;
-    padding: 2%;
-    
+.wrapper-for-note{
+  border: 2px solid rgb(18, 84, 228) ;
+  border-radius: 15px;
+  margin-right: 25%;
+  margin-top: 3%;
+  padding: 2%;
 }
+
 .dropbtn {
     background-color: #3498DB;
     color: white;
@@ -87,7 +87,7 @@ h1{
   /* Изменение цвета выпадающих ссылок при наведении курсора */
   .dropdown-content a:hover {background-color: #ddd}
   
-  /* Показать выпадающее меню (используйте JS, чтобы добавить этот класс .dropdown-content содержимого, когда пользователь нажимает на кнопку выпадающего списка) */
+  
   .show {display:block;}
   .identificator {display: none;}
   .del-but{
@@ -95,4 +95,7 @@ h1{
   }
   .ready-but{
     width: 100%;
+  }
+  .ready {
+    border: 2px solid rgb(119, 247, 0);
   }

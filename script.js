@@ -1,90 +1,48 @@
 let but = document.getElementById('but');
 let wrapper = document.getElementById('wrapper-for-notes');
-let  noteWrapper = document.createElement('div')
-noteWrapper.className = 'wrapper-for-note';
 
-addCont = (wrapper, text, key, name=null) => {
-  let  noteWrapper = document.createElement('div');
-           
-  noteWrapper.className = 'wrapper-for-note';
 
-  if (wrapper.children.length > 0){
-    wrapper.insertBefore(noteWrapper, wrapper.firstChild);
-    if (name){
-      wrapper.firstChild.appendChild(document.createElement('h2'));
-      wrapper.firstChild.lastChild.className = 'name-note';
-      wrapper.firstChild.lastChild.textContent = name;
-      console.log(wrapper.lastChild.lastChild);
-    }
-    wrapper.firstChild.appendChild(document.createElement('p'));
-    wrapper.firstChild.className = 'text-note';
-    wrapper.firstChild.lastChild.textContent = text;
-    let now = new Date();
-    wrapper.firstChild.appendChild(document.createElement('p'));
-    wrapper.firstChild.lastChild.textContent = `${now.getDate()}:${now.getMonth() + 1}:${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
-    wrapper.firstChild.lastChild.className = 'date';
-    wrapper.firstChild.appendChild(document.createElement('p'));
-    wrapper.firstChild.lastChild.textContent = key;
-    wrapper.firstChild.lastChild.classList.add('identificator');
-    wrapper.firstChild.insertAdjacentHTML('afterbegin', `<div class="dropdown">
-    <button class="dropbtn"><i class="fa fa-bars"></i></button>
-    <div id="myDropdown" class="dropdown-content">
-    <button class='ready-but'>Выполнено</button>
-    <button class='del-but'>Удалить</button>
-      
-    </div>
-  </div>`);
-    return;
-  } 
-  wrapper.appendChild(noteWrapper);
-  if (name){
-    wrapper.lastChild.appendChild(document.createElement('h2'));
-    wrapper.lastChild.lastChild.className = 'name-note';
-    wrapper.lastChild.lastChild.textContent = name;
-    console.log(wrapper.lastChild.lastChild);
-  }
-  wrapper.lastChild.appendChild(document.createElement('p'));
-  wrapper.lastChild.className = 'text-note';
-  wrapper.lastChild.lastChild.textContent = text;
-  wrapper.lastChild.appendChild(document.createElement('p'));
-  let now = new Date();
-  wrapper.lastChild.lastChild.textContent = `${now.getDate()}:${now.getMonth() + 1}:${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
-  wrapper.lastChild.lastChild.className = 'date';
-  wrapper.lastChild.appendChild(document.createElement('p'));
-  wrapper.lastChild.lastChild.textContent = key;
-  wrapper.lastChild.lastChild.classList.add('identificator');
-  wrapper.lastChild.insertAdjacentHTML('afterbegin', `<div class="dropdown">
-  <button class="dropbtn"><i class="fa fa-bars"></i></button>
-  <div id="myDropdown" class="dropdown-content">
-  <button class='ready-but'>Выполнено</button>
-  <button class='del-but'>Удалить</button>
-    
-  </div>
+addCont = note => {
+  if (note[0]){
+    wrapper.insertAdjacentHTML('afterbegin', `<div class="wrapper-for-note" style='border: 2px solid ${note[4] ? 'rgb(119, 247, 0)' : 'rgb(18, 84, 228)'}'>
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa fa-bars"></i></button>
+        <div id="myDropdown" class="dropdown-content">
+        <button class='ready-but'>${note[4] ? "Не выполнено" : "Выполнено"}</button>
+        <button class='del-but'>Удалить</button>
+          
+        </div>
+      </div>
+    <h2 class="name-note">${note[0]}</h2>
+    <p class="text-note">${note[1]}</p>
+    <p class="date">${note[2]}</p>
+    <p class="identificator">${note[3]}</p>
+
 </div>`);
-
+  }else {
+    wrapper.insertAdjacentHTML('beforebegin', `<div class="wrapper-for-note" style='border: 2px solid ${note[4] ? 'rgb(119, 247, 0)' : 'rgb(18, 84, 228)'}'>
+    <div class="dropdown">
+        <button class="dropbtn"><i class="fa fa-bars"></i></button>
+        <div id="myDropdown" class="dropdown-content">
+        <button class='ready-but'>${note[4] ? "Не выполнено" : "Выполнено"}</button>
+        <button class='del-but'>Удалить</button>
+          
+        </div>
+      </div>
+    <p class="text-note">${note[1]}</p>
+    <p class="date">${note[2]}</p>
+    <p class="identificator">${note[3]}</p>`)
+  }
 }
 function recovery(localStorage){
-    if (localStorage.length > 1){
-
-        let i;
-        for (i = localStorage.length - 1; i > -1; i--){
-          let key  = localStorage.key(i);
-          if (key =='counter'){
-              continue;
-          }  
-          if (localStorage.getItem(key).split(',,,').length > 1){
-            let nameNote = localStorage.getItem(key).split(',,,')[0];
-            let textNote = localStorage.getItem(key).split(',,,')[1];
-            addCont(wrapper, textNote, key, nameNote);
-        
-
-          } else if (localStorage.getItem(key).split(',,,').length == 1){
-              let textNote = localStorage.getItem(key)[0];
-              addCont(wrapper, textNote, key);
-          }
-        }
-}}
-    
+  if (localStorage.length > 1){
+    for (let i = localStorage.length - 1; i > -1; i--){
+      let key = localStorage.key(i);
+      if (key == 'counter'){continue;}
+      addCont(JSON.parse(localStorage.getItem(key)));
+    }
+  }
+}       
 try {
     recovery(localStorage);
 } catch(err){
@@ -98,23 +56,28 @@ but.onclick = () => {
     let nameNote = document.getElementById('name-note').value; 
     let textNote = document.getElementById('form-note').value;
     let key = localStorage.counter;
+    let now = new Date();
+    let nowt =  `${now.getDate()}:${now.getMonth() + 1}:${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}`;
+    let note = [];
     if (textNote.length > 1){
-        if (!nameNote){
-            addCont(wrapper, textNote, key);
-            localStorage.setItem(key, textNote);
-            localStorage.counter++;
-            
-        }else{
-            addCont(wrapper, textNote, key, nameNote);
-            localStorage.setItem(key, nameNote + ',,,' + textNote);
-            localStorage.counter++;
-        }
+      if (nameNote){
+        note.push(nameNote);
+      }else{
+        note.push(null);
+      }
 
-  }
-  document.getElementById('name-note').value = '';
-  document.getElementById('form-note').value = '';
+      note.push(textNote);
+      note.push(nowt);
+      note.push(key);
+      note.push(false);
+      addCont(note);
+      localStorage.setItem(key, JSON.stringify(note));
+      localStorage.counter++;
+  
+      document.getElementById('name-note').value = '';
+      document.getElementById('form-note').value = '';
 } 
-
+}
 
 window.onclick = function(event) {
   if (!event.target.matches('.dropbtn')) {
@@ -138,10 +101,22 @@ wrapper.onclick = function(event){
       localStorage.removeItem(key);
       event.target.parentNode.parentNode.parentNode.remove();
     }else if (event.target.textContent == 'Выполнено'){
+      let key = event.target.parentNode.parentNode.parentNode.querySelector('.identificator').textContent;
+      let i = localStorage.getItem(key);
+      let item = JSON.parse(localStorage.getItem(key));
+      localStorage.removeItem(key);
+      item[4] = true;
+      localStorage.setItem(key, JSON.stringify(item));
       event.target.parentNode.parentNode.parentNode.style.border = '2px solid rgb(1, 228, 69)';
       event.target.textContent = 'Не выполнено';
     }else if (event.target.textContent == 'Не выполнено'){
       event.target.parentNode.parentNode.parentNode.style.border = '2px solid rgb(18, 84, 228)';
       event.target.textContent = 'Выполнено';
+      let key = event.target.parentNode.parentNode.parentNode.querySelector('.identificator').textContent;
+      let item = JSON.parse(localStorage.getItem(key));
+      
+      item[4] = false;
+      localStorage.removeItem(key)
+      localStorage.setItem(key, JSON.stringify(item));
   }
 }}
